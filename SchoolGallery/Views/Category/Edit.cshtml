@@ -1,0 +1,67 @@
+﻿@model SchoolGallery.Models.CategoryModel
+
+@{
+    Layout = "~/Views/Shared/_BSLayout.cshtml";
+    ViewData["Title"] = "Edit";
+}
+
+<h2 class="site-h1">编辑分类</h2>
+
+<hr />
+
+
+<form class="layui-form" asp-action="Edit">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <div class="layui-form-item">
+        <label asp-for="Title" class="layui-form-label"></label>
+        <div class="layui-input-block">
+            <input asp-for="Title" class="layui-input" />
+            <span asp-validation-for="Title" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label asp-for="ParentID" class="layui-form-label"></label>
+        <div class="layui-input-block">
+            <select name="ParentID" id="ParentID" class="form-control" asp-items="@ViewBag.CategoryType"></select>
+            <span asp-validation-for="ParentID" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <div class="checkbox">
+            <label class="layui-form-label" asp-for="NeedPassWord"></label>
+            <div class="layui-input-block">
+                <input asp-for="NeedPassWord" title="是否需要密码" />
+            </div>
+
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label asp-for="PassWord" class="layui-form-label"></label>
+        <div class="layui-input-block">
+            <input asp-for="PassWord" class="layui-input" />
+            <span asp-validation-for="PassWord" class="text-danger"></span>
+        </div>
+
+    </div>
+    <input type="hidden" asp-for="ID" />
+    <div class="layui-form-item">
+        <div class="layui-input-block">
+            <input type="submit" value="Create" class="layui-btn" />
+        </div>
+    </div>
+</form>
+
+
+<div >
+    <a class="layui-btn layui-btn-primary" asp-action="Index">返回</a>
+</div>
+<script>
+    //Demo
+    layui.use('form', function () {
+        var form = layui.form;
+    });
+</script>
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
+}

@@ -1,0 +1,43 @@
+﻿@model SchoolGallery.Models.ContentModel
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Views/Shared/_BSLayout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>ContentModel</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Title)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Title)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Detail)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Detail)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.CategoryID)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.CategoryID)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Accessories)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Accessories)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.ID">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

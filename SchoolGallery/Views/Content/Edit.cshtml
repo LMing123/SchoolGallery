@@ -1,0 +1,59 @@
+﻿@model SchoolGallery.Models.ViewModels.ContentViewModel
+
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Views/Shared/_BSLayout.cshtml";
+}
+
+<h2 class="site-h1">修改内容</h2>
+
+<hr />
+
+<form class="layui-form" asp-action="Edit" method="post" enctype="multipart/form-data">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <div class="layui-form-item">
+        <label asp-for="Title" class="layui-form-label"></label>
+        <div class="layui-input-block">
+            <input asp-for="Title" class="layui-input" />
+            <span asp-validation-for="Title" class="layui-bg-red"></span>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label asp-for="CategoryID" class="layui-form-label"></label>
+        <div class="layui-input-block">
+            <select name="CategoryID" id="CategoryID" class="form-control" asp-items="@ViewBag.Category"></select>
+            <span asp-validation-for="CategoryID" class="layui-bg-red"></span>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label asp-for="Sort" class="layui-form-label"></label>
+        <div class="layui-input-block">
+            <input asp-for="Sort" class="layui-input" />
+            <span asp-validation-for="Sort" class="layui-bg-red"></span>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label asp-for="Accessories" class="layui-form-label"></label>
+        <div class="layui-input-block">
+            <input type="file" asp-for="Accessories" class="form-control" />
+            <span asp-validation-for="Accessories" class="layui-bg-red"></span>
+        </div>
+    </div>
+    <input type="hidden" asp-for="ID" />
+    <div class="layui-form-item">
+        <div class="layui-input-block">
+            <input type="submit" value="保存" class="layui-btn" />
+        </div>
+    </div>
+</form>
+
+
+<div>
+    <a class="layui-btn layui-btn-primary" asp-action="Index">返回</a>
+</div>
+<script>
+    //Demo
+    layui.use('form', function () {
+        var form = layui.form;
+    });
+</script>

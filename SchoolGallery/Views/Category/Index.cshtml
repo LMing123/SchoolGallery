@@ -1,0 +1,60 @@
+﻿@model IEnumerable<SchoolGallery.Models.CategoryModel>
+
+@{
+    Layout = "~/Views/Shared/_BSLayout.cshtml";
+    ViewData["Title"] = "Index";
+}
+
+<h2 class="site-h1">分类管理</h2>
+<hr>
+<p 	class="layui-btn layui-btn-primary">
+    <a asp-action="Create">新建分类</a>
+</p>
+<table class="layui-table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Title)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ParentID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NeedPassWord)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PassWord)
+            </th>
+            @*<th>
+                @Html.DisplayNameFor(model => model.Sort)
+            </th>*@
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ParentID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NeedPassWord)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PassWord)
+            </td>
+            @*<td>
+                @Html.DisplayFor(modelItem => item.Sort)
+            </td>*@
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.ID">编辑</a> |
+               @* <a asp-action="Details" asp-route-id="@item.ID">Details</a> |*@
+                <a asp-action="Delete" asp-route-id="@item.ID">删除</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

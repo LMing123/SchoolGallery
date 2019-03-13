@@ -1,0 +1,67 @@
+﻿@model SchoolGallery.Models.CategoryModel
+
+@{
+    Layout = "~/Views/Shared/_BSLayout.cshtml";
+    ViewData["Title"] = "Delete";
+}
+
+<h2 class="site-h1">删除分类</h2>
+
+<h3 class="site-h2">你确定删除这个嘛?</h3>
+<hr />
+<div>
+    <table class="layui-table">
+        <colgroup>
+            <col width="150">
+            <col width="200">
+
+        </colgroup>
+        <thead>
+            <tr>
+                <th></th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>@Html.DisplayNameFor(model => model.Title)</td>
+                <td>@Html.DisplayFor(model => model.Title)</td>
+            </tr>
+            <tr>
+                <td>@Html.DisplayNameFor(model => model.ParentID)</td>
+                <td> @Html.DisplayFor(model => model.ParentID)</td>
+            </tr>
+            <tr>
+                <td>@Html.DisplayNameFor(model => model.NeedPassWord)</td>
+                <td> @Html.DisplayFor(model => model.NeedPassWord)</td>
+            </tr>
+            <tr>
+                <td> @Html.DisplayNameFor(model => model.PassWord)</td>
+                <td>@Html.DisplayFor(model => model.PassWord)</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="layui-container">
+        <div class="layui-row">
+            <div class="layui-col-md4">
+               <br>
+            </div>
+            <div class="layui-col-md4">
+                <form asp-action="Delete">
+
+                    <input type="hidden" asp-for="ID" />
+                    <input type="submit" value="删除" class="layui-btn" /> 
+                    <a asp-action="Index" class="layui-btn">返回列表</a>
+
+                </form>
+            </div>
+            <div class="layui-col-md4">
+                <br>
+            </div>
+            
+        </div>
+    </div>
+
+
+</div>
