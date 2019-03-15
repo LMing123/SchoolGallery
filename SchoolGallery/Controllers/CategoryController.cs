@@ -15,7 +15,7 @@ namespace SchoolGallery.Controllers
     {
         private readonly SchoolContext _context;
 
-        public CategoryController(SchoolContext context):base(context)
+        public CategoryController(SchoolContext context) : base(context)
         {
             _context = context;
         }
@@ -23,7 +23,31 @@ namespace SchoolGallery.Controllers
         // GET: Category
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Category.ToListAsync());
+
+            return View(BulidTree(_context.Category.ToList(),-1,0));
+        }
+
+        private List<CategoryModel> BulidTree(List<CategoryModel> items, int parentID,int depth)
+        {
+            var list = new List<CategoryModel>();
+            var temItems = items.Where(z => z.ParentID == parentID).ToList();
+
+            string tem = depth == 0 ?  "├" :  "│";
+            string tem1 = new string('-', depth * 3);
+
+            tem = tem+tem1+' ';
+
+
+            if (temItems.Count > 0)
+            {
+                for (int i = 0; i < temItems.Count; i++)
+                {
+                    temItems[i].Title = tem + temItems[i].Title;
+                    list.Add(temItems[i]);
+                    list.AddRange(BulidTree(items, temItems[i].ID, depth + 1));
+                }
+            }
+            return list;
         }
 
         // GET: Category/Details/5

@@ -15,10 +15,11 @@ namespace SchoolGallery.Utils
         {
             var list = new List<SelectListItem>();
             var temItems = items.Where(z => z.ParentID == parentID).ToList();
-            string tem = new string('┴', depth);
 
-            string tem1 = depth == 0 ? tem1 = "├" : tem1 = "├";
-            tem =  tem1 + tem;
+            string tem = depth == 0 ? "├" : "│";
+            string tem1 = new string('-', depth * 3);
+
+            tem = tem + tem1 + ' ';
 
 
             if (temItems.Count > 0)
