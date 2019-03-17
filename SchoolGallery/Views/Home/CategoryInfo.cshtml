@@ -1,0 +1,30 @@
+﻿
+@{
+    Layout = null;
+}
+@using SchoolGallery.Models;
+@model List<ContentModel>;
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>后台</title>
+    <link rel="stylesheet" href="~/layui/css/layui.css">
+</head>
+<body class="layui-layout-body">
+    <script src="https://cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>
+    <script src="https://cdn.staticfile.org/respond.js/1.4.2/respond.min.js"></script>
+    <div>
+        @foreach(var item in Model)
+        {
+            <a asp-action="detail" asp-route-id="@item.ID">@item.Title</a>
+        }
+    </div>
+
+    <script src="~/lib/jquery/dist/jquery.js"></script>
+    <script src="~/layui/layui.js"></script>
+</body>
+</html>
+

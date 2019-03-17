@@ -170,10 +170,14 @@ namespace SchoolGallery.Controllers
             {
                 return NotFound();
             }
-            if (!contentModel.Accessories.FileName.EndsWith(".swf"))
+            if (!(contentModel.Accessories == null || contentModel.Accessories.Length == 0))
             {
-                ModelState.AddModelError("Accessories", "上传SWF格式文件");
+                if (!contentModel.Accessories.FileName.EndsWith(".swf"))
+                {
+                    ModelState.AddModelError("Accessories", "上传SWF格式文件");
+                }
             }
+                
 
             if (ModelState.IsValid)
             {
@@ -209,7 +213,7 @@ namespace SchoolGallery.Controllers
                         content.Accessories = fileName;
                     }
                    
-                    _context.Update(contentModel);
+                    _context.Update(content);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)

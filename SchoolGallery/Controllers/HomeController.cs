@@ -17,7 +17,7 @@ namespace SchoolGallery.Controllers
         {
             _context = context;
         }
-        public IActionResult Index(int? id)
+        public IActionResult Category(int? id)
         {
             HomeViewModel homeViewModel = new HomeViewModel();
             homeViewModel.SelectID = id ??0;
@@ -26,7 +26,16 @@ namespace SchoolGallery.Controllers
         }
         public IActionResult CategoryInfo(int id)
         {
-            return Content("123");
+
+            return View(_context.Content.Where(z=>z.CategoryID==id).ToList());
+        }
+        public IActionResult Detail(int id)
+        {
+           var content= _context.Content.Find(id);
+            if (content == null)
+                return NotFound();
+
+            return View(content);
         }
 
         public IActionResult About()
