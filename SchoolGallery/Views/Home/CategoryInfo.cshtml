@@ -11,20 +11,31 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <title>后台</title>
+    <link rel="stylesheet" type="text/css" href="~/css/base.css" />
     <link rel="stylesheet" href="~/layui/css/layui.css">
+    <link rel="stylesheet" type="text/css" href="~/css/list.css" />
 </head>
 <body class="layui-layout-body">
     <script src="https://cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>
     <script src="https://cdn.staticfile.org/respond.js/1.4.2/respond.min.js"></script>
-    <div>
-        @foreach(var item in Model)
-        {
-            <a asp-action="detail" asp-route-id="@item.ID">@item.Title</a>
-        }
-    </div>
+    <div class="container">
+        <div class="content">
+            <ul class="text-list">
+                @foreach (var item in Model)
+                {
+                    <li>
+                        <div class="icon">>></div>
+                        <a class="text-name" asp-action="detail" asp-route-id="@item.ID">【文件】@item.Title</a>
+                        <div class="date">@item.PublishTime</div>
+                    </li>
+                }
 
-    <script src="~/lib/jquery/dist/jquery.js"></script>
-    <script src="~/layui/layui.js"></script>
+
+            </ul>
+        </div>
+    </div>
+        <script src="~/lib/jquery/dist/jquery.js"></script>
+        <script src="~/layui/layui.js"></script>
 </body>
 </html>
 

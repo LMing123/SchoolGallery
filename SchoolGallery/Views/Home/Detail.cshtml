@@ -9,8 +9,64 @@
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>Detail</title>
+    @if (!Model.IsVideo)
+    {
+        <script type="text/javascript" src="~/js/flexpaper_flash.js"></script>
+    }
+
 </head>
 <body>
-    @Model.Title
+    <h2>@Model.Title</h2>
+    <hr />
+
+    <div>
+
+        @if (Model.IsVideo)
+        {
+            <object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=6,0,29,0" width="750" height="400">
+                <param name="movie" value="~/Upload/Videos/flvplayer.swf" />
+                <param name="quality" value="high" />
+                <param name="allowFullScreen" value="true" />
+                <embed src="~/Upload/Videos/flvplayer.swf" allowfullscreen="true" flashvars="vcastr_file=@Model.Accessories&IsAutoPlay=0&LogoUrl=images/logo.jpg" quality="high" pluginspage="http://www.macromedia.com/go/getflashplayer" type="application/x-shockwave-flash" width="750" height="400"></embed>
+            </object>
+
+        }
+        else
+        {
+            <a id="viewerPlaceHolder" style="height:650px;display:block"></a>
+
+            <script type="text/javascript">
+            var fp = new FlexPaperViewer(
+                '/flexPaper/FlexPaperViewer',
+                'viewerPlaceHolder', {
+                    config: {
+                        SwfFile: escape('/Upload/Files/@Model.Accessories'),
+                        Scale: 0.6,
+                        ZoomTransition: 'easeOut',
+                        ZoomTime: 0.5,
+                        ZoomInterval: 0.2,
+                        FitPageOnLoad: true,
+                        FitWidthOnLoad: false,
+                        FullScreenAsMaxWindow: false,
+                        ProgressiveLoading: false,
+                        MinZoomSize: 0.2,
+                        MaxZoomSize: 5,
+                        SearchMatchAll: false,
+                        InitViewMode: 'Portrait',
+                        PrintPaperAsBitmap: false,
+
+                        ViewModeToolsVisible: true,
+                        ZoomToolsVisible: true,
+                        NavToolsVisible: true,
+                        CursorToolsVisible: true,
+                        SearchToolsVisible: true,
+
+                        localeChain: 'en_US'
+                    }
+                });
+            </script>
+        }
+
+    </div>
 </body>
 </html>

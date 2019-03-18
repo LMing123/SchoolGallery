@@ -1,0 +1,72 @@
+.container{
+	overflow: hidden;
+	width: 1000px;
+	margin: 0 auto;
+	margin-top: 10px;
+}
+.nav-left{
+	float: left;
+	width: 200px;
+}
+.nav-left ul{
+    float: left;
+    width: 200px;
+}
+.right-content{
+	position: relative ;
+    margin-left:5px;
+	float: left;
+	width: 78%;
+}
+.top-site{
+	width: 100%;
+	height: 40px;
+	border-bottom: 5px solid #DDDDDD;
+}
+ul.site{
+	float: left;
+	overflow: hidden;
+	line-height: 40px;
+	padding-right: 60px;
+	border-bottom: 5px solid #009688;
+	z-index: 2;
+}
+ul.site li{
+	float: left;
+}
+.btn-login{
+	display: block;
+	position: absolute;
+	top: 0;
+	right: 0;
+	line-height: 40px;
+	color: #C9302C;
+	cursor: pointer;
+}
+ul.text-list{
+	overflow: hidden;
+	width: 100%;
+	margin-top: 20px;
+}
+ul.text-list li{
+	height: 30px;
+	border-bottom: 1px dotted #DDDDDD;
+}
+.icon{
+	float: left;
+	width: 20px;
+	height: 20px;
+	line-height: 30px;
+	color: #C6C6C6;
+}
+.text-name{
+	float: left;
+	color: #333;
+	font-size: 14px;
+	line-height: 30px;
+}
+.date{
+	float: right;
+	color: #767676;
+	line-height: 30px;
+}

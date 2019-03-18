@@ -76,7 +76,7 @@ namespace SchoolGallery.Controllers
             }
             if (ModelState.IsValid)
             {
-                string FilePath = Path.Combine(_env.ContentRootPath, "Upload", "Videos");
+                string FilePath = Path.Combine(_env.WebRootPath, "Upload", "Videos");
 
                 if (!Directory.Exists(FilePath))
                 {
@@ -94,7 +94,7 @@ namespace SchoolGallery.Controllers
                     PublishTime = DateTime.Now,
                     PublisherID = user.AccountID,
                     ModifiedIP = HttpContext.Connection.RemoteIpAddress.ToString(),
-                    Accessories = fileName,
+                    Accessories = fileName + ".flv",
                     IsVideo = true,
                 };
 
@@ -193,7 +193,7 @@ namespace SchoolGallery.Controllers
                     {
                         string filePath = Path.Combine(_env.ContentRootPath, "Upload", "Files");
                         string fileName = Guid.NewGuid().ToString();
-                        using (var files = new FileStream(Path.Combine(filePath, fileName), FileMode.CreateNew))
+                        using (var files = new FileStream(Path.Combine(filePath, fileName + ".flv"), FileMode.CreateNew))
                         {
                             contentModel.Accessories.CopyTo(files);
                         }
@@ -204,7 +204,7 @@ namespace SchoolGallery.Controllers
                         content.PublishTime = DateTime.Now;
                         content.ModifiedIP = HttpContext.Connection.RemoteIpAddress.ToString();
                         content.Sort = contentModel.Sort;
-                        content.Accessories = fileName;
+                        content.Accessories = fileName + ".flv";
                     }
 
                     _context.Update(content);

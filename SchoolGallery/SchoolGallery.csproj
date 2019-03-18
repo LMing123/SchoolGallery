@@ -13,7 +13,6 @@
   <ItemGroup>
     <Folder Include="Upload\Files\" />
     <Folder Include="Upload\Videos\" />
-    <Folder Include="wwwroot\images\" />
   </ItemGroup>
 
   <ItemGroup>

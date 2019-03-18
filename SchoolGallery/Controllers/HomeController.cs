@@ -17,11 +17,18 @@ namespace SchoolGallery.Controllers
         {
             _context = context;
         }
+        public IActionResult Index()
+        {
+            return View(_context.Category.Where(z=>z.ParentID==-1).ToList());
+        }
         public IActionResult Category(int? id)
         {
+            id = id ?? 0;
             HomeViewModel homeViewModel = new HomeViewModel();
+            homeViewModel.Title = _context.Category.Find(id).Title;
             homeViewModel.SelectID = id ??0;
-            homeViewModel.Items = _context.Category.ToList();
+            homeViewModel.CategoryItems = _context.Category.ToList();
+            homeViewModel.ContentItems = _context.Content.Where(z=>z.CategoryID==id).ToList();
             return View(homeViewModel);
         }
         public IActionResult CategoryInfo(int id)

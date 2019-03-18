@@ -1,52 +1,38 @@
-body{
-	width: 100%;
-}
-header{
-	width: 100%;
-	height: 60px;
-	background-color: #1E9FFF;
-}
-.header-wrap{
-	width: 1000px;
-	height: 100%;
-	margin: 0 auto;
-}
 .container{
 	overflow: hidden;
 	width: 1000px;
 	margin: 0 auto;
 	margin-top: 10px;
 }
-.nav-left{
-	float: left;
-	width: 22%;
-}
-.right-content{
-	position: relative;
-	float: left;
-	width: 78%;
-}
-.top-site{
-	width: 100%;
-	height: 40px;
-	border-bottom: 5px solid #DDDDDD;
-}
-ul.site{
-	float: left;
+ul.container{
 	overflow: hidden;
-	line-height: 40px;
-	padding-right: 60px;
-	border-bottom: 5px solid #009688;
-	z-index: 2;
+	width: 100%;
 }
-ul.site li{
+.module-item{
 	float: left;
+	width: 31%;
+	margin: 0 10px;
+	margin-top: 20px;
 }
-.btn-login{
-	position: absolute;
-	top: 0;
-	right: 0;
+.item-img-wrap{
+	width: 100%;
+	height: 250px;
+}
+.item-img-wrap img{
+	width: 100%;
+	height: 100%;
+}
+.test{
+	color: #fff;
+	font-size: 16px;
+	text-align: center;
 	line-height: 40px;
-	color: #C9302C;
-	cursor: pointer;
+	background-color: #000000;
+}
+.test a{
+    color: #fff;
+    font-size: 16px;
+    text-align: center;
+    line-height: 40px;
+    background-color: #000000;
 }
