@@ -8,7 +8,17 @@
 <h2 class="site-h1">添加内容</h2>
 
 <hr />
-
+@if (ViewBag.isSuccess != null)
+{
+    if (ViewBag.isSuccess)
+    {
+        <h3> 添加成功</h3>
+    }
+    else
+    {
+        <h3> 添加失败</h3>
+    }
+}
 
 <form class="layui-form" asp-action="Create" method="post" enctype="multipart/form-data">
     <div asp-validation-summary="ModelOnly" class="text-danger"></div>

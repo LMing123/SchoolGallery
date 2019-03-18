@@ -8,6 +8,7 @@ namespace SchoolGallery.Models
 {
     public class ContentModel:BaseModel
     {
+        [Required]
         [Display(Name ="标题")]
         public string Title { get; set; }
         [Display(Name ="详情")]
@@ -21,6 +22,7 @@ namespace SchoolGallery.Models
         public string PublisherID { get; set; }
         public string ModifiedIP { get; set; }
         [Display(Name = "排序")]
+        [Required]
         public int Sort { get; set; }
     }
 }

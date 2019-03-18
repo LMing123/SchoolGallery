@@ -87,15 +87,18 @@ namespace SchoolGallery.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Title,ParentID,NeedPassWord,PassWord,ID")] CategoryModel categoryModel)
         {
+            ViewBag.isSuccess = null;
             if (ModelState.IsValid)
             {
                 _context.Add(categoryModel);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                ViewBag.isSuccess = true;
+                return View();
             }
+            ViewBag.isSuccess = false;
             return View(categoryModel);
         }
-
+    
         // GET: Category/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {

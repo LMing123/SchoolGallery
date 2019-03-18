@@ -17,6 +17,7 @@ namespace SchoolGallery.Models.ViewModels
         [Required]
         [Display(Name = "所属类目")]
         public int CategoryID { get; set; }
+        [Required]
         [Display(Name = "上传附件")]
       //  [FileExtensions(Extensions =   "[swf]" , ErrorMessage = "文件格式错误")]
         public IFormFile Accessories { get; set; }

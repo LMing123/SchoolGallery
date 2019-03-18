@@ -8,6 +8,7 @@ namespace SchoolGallery.Models
 {
     public class CategoryModel:BaseModel
     {
+        [Required]
         [Display(Name ="标题")]
         public string Title { get; set; }
         [Display(Name = "所属级别")]
@@ -17,6 +18,7 @@ namespace SchoolGallery.Models
         [Display(Name = "密码")]
         public string PassWord { get; set; }
         [Display(Name ="排序")]
+        [Required]
         public int Sort { get; set; }
     }
 }

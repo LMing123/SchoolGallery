@@ -69,10 +69,20 @@ namespace SchoolGallery.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Title,Detail,CategoryID,Accessories,Sort,ID")] ContentViewModel contentModel)
         {
-           
-            if (!contentModel.Accessories.FileName.EndsWith(".flv"))
+
+            var Category = new List<SelectListItem> { new SelectListItem() { Text = "主目录", Value = "-1" } };
+
+            var allCategory = _context.Category.ToList();
+
+            Category.AddRange(Tools.CreateTree(allCategory, -1, 0));
+            ViewBag.Category = Category;
+            ViewBag.isSuccess = null;
+            if (!(contentModel.Accessories == null || contentModel.Accessories.Length == 0))
             {
-                ModelState.AddModelError("Accessories", "上传FLV格式文件");
+                if (!contentModel.Accessories.FileName.EndsWith(".flv"))
+                {
+                    ModelState.AddModelError("Accessories", "上传FLV格式文件");
+                }
             }
             if (ModelState.IsValid)
             {
@@ -100,14 +110,10 @@ namespace SchoolGallery.Controllers
 
                 _context.Add(content);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                ViewBag.isSuccess = true;
+                return View();
             }
-            var Category = new List<SelectListItem> { new SelectListItem() { Text = "主目录", Value = "-1" } };
-
-            var allCategory = _context.Category.ToList();
-
-            Category.AddRange(Tools.CreateTree(allCategory, -1, 0));
-            ViewBag.Category = Category;
+            ViewBag.isSuccess = false;
             return View(contentModel);
         }
 
@@ -168,9 +174,12 @@ namespace SchoolGallery.Controllers
             {
                 return NotFound();
             }
-            if (!contentModel.Accessories.FileName.EndsWith(".swf"))
+            if (!(contentModel.Accessories == null || contentModel.Accessories.Length == 0))
             {
-                ModelState.AddModelError("Accessories", "上传SWF格式文件");
+                if (!contentModel.Accessories.FileName.EndsWith(".flv"))
+                {
+                    ModelState.AddModelError("Accessories", "上传FLV格式文件");
+                }
             }
 
             if (ModelState.IsValid)
