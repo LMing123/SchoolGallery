@@ -1,5 +1,6 @@
 ﻿
 @{
+    ViewData["Title"] = "佐证材料";
     Layout = null;
 }
 @using SchoolGallery.Models;
@@ -16,13 +17,15 @@
 </head>
 
 <body>
+    <script src="https://cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>
+    <script src="https://cdn.staticfile.org/respond.js/1.4.2/respond.min.js"></script>
     <div class="banner"><img src="~/images/banner.jpg" /></div>
 
     <header>
         <div class="header-wrap">
             <ul class="layui-nav layui-bg-cyan" lay-filter="">
                 <li class="layui-nav-item">
-                    <a asp-action="Index" >首页</a>
+                    <a asp-action="Index">首页</a>
                 </li>
                 @foreach (var item in Model)
                 {
@@ -48,7 +51,7 @@
                 </li>
             }
 
-           
+
         </ul>
     </div>
 

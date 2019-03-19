@@ -1,5 +1,5 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "佐证材料";
     Layout = "";
 }
 @model SchoolGallery.Models.ViewModels.HomeViewModel;
@@ -20,8 +20,9 @@
 <body>
 
     <div class="banner"><img src="~/images/banner.jpg" /></div>
+    <script src="https://cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>
+    <script src="https://cdn.staticfile.org/respond.js/1.4.2/respond.min.js"></script>
 
-   
     <header>
         <div class="header-wrap">
             <ul class="layui-nav layui-bg-cyan" lay-filter="">
@@ -70,7 +71,7 @@
                 {
                     sb.Append("<li class=\"layui-nav-item\">");
                     sb.AppendFormat("<a href=\"/home/categoryinfo/{0} \" target=\"main\">{1}</a>", temItem[i].ID, temItem[i].Title);
-                   // sb.AppendFormat("<a href=\"{0} \" >{1}</a>", temItem[i].ID, temItem[i].Title);
+                    // sb.AppendFormat("<a href=\"{0} \" >{1}</a>", temItem[i].ID, temItem[i].Title);
                     sb.Append("</li>");
                 }
             }
@@ -83,7 +84,7 @@
     }
     <div class="container">
         <div class="nav-left">
-            <ul class="layui-nav layui-nav-tree layui-bg-cyan" >
+            <ul class="layui-nav layui-nav-tree layui-bg-cyan">
                 @Html.Raw(Tree(Model.CategoryItems, Model.SelectID, 0))
             </ul>
         </div>
