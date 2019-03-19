@@ -53,7 +53,7 @@ namespace SchoolGallery.Controllers
         // GET: Content/Create
         public IActionResult Create()
         {
-            var Category = new List<SelectListItem> { new SelectListItem() { Text = "主目录", Value = "-1" } };
+            var Category = new List<SelectListItem> ();
 
             var allCategory = _context.Category.ToList();
             
@@ -69,7 +69,7 @@ namespace SchoolGallery.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Title,Detail,CategoryID,Accessories,Sort,ID")] ContentViewModel contentModel)
         {
-            var Category = new List<SelectListItem> { new SelectListItem() { Text = "主目录", Value = "-1" } };
+            var Category = new List<SelectListItem> ();
 
             var allCategory = _context.Category.ToList();
 
@@ -77,12 +77,15 @@ namespace SchoolGallery.Controllers
             ViewBag.Category = Category;
 
             ViewBag.isSuccess = null;
-            if (!(contentModel.Accessories == null || contentModel.Accessories.Length == 0))
+            if (contentModel.Accessories == null || contentModel.Accessories.Length == 0)
             {
-                if (!contentModel.Accessories.FileName.EndsWith(".swf"))
-                {
-                    ModelState.AddModelError("Accessories", "上传SWF格式文件");
-                }
+                
+               ModelState.AddModelError("Accessories", "上传SWF格式文件");
+               
+            }
+            if (!contentModel.Accessories.FileName.EndsWith(".swf"))
+            {
+                ModelState.AddModelError("Accessories", "上传SWF格式文件");
             }
 
             if (ModelState.IsValid)
@@ -134,7 +137,7 @@ namespace SchoolGallery.Controllers
                 return NotFound();
             }
 
-            var Category = new List<SelectListItem> { new SelectListItem() { Text = "主目录", Value = "-1" } };
+            var Category = new List<SelectListItem>();
 
             var allCategory = _context.Category.ToList();
 
@@ -204,7 +207,9 @@ namespace SchoolGallery.Controllers
                     }
                     else
                     {
-                        string filePath = Path.Combine(_env.ContentRootPath, "Upload", "Files");
+
+
+                        string filePath = Path.Combine(_env.WebRootPath, "Upload", "Files");
                         string fileName = Guid.NewGuid().ToString();
                         using (var files = new FileStream(Path.Combine(filePath, fileName + ".swf"), FileMode.CreateNew))
                         {
@@ -236,7 +241,7 @@ namespace SchoolGallery.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            var Category = new List<SelectListItem> { new SelectListItem() { Text = "主目录", Value = "-1" } };
+            var Category = new List<SelectListItem> ();
 
             var allCategory = _context.Category.ToList();
 

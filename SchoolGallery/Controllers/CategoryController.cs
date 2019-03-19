@@ -88,12 +88,18 @@ namespace SchoolGallery.Controllers
         public async Task<IActionResult> Create([Bind("Title,ParentID,NeedPassWord,PassWord,ID")] CategoryModel categoryModel)
         {
             ViewBag.isSuccess = null;
+            var Category = new List<SelectListItem> { new SelectListItem() { Text = "主目录", Value = "-1", Selected = true } };
+            var allCategory = _context.Category.ToList();
+
+
+            Category.AddRange(Tools.CreateTree(allCategory, -1, 0));
+            ViewBag.CategoryType = Category;
             if (ModelState.IsValid)
             {
                 _context.Add(categoryModel);
                 await _context.SaveChangesAsync();
                 ViewBag.isSuccess = true;
-                return View();
+                return  View() ;
             }
             ViewBag.isSuccess = false;
             return View(categoryModel);

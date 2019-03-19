@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Hosting;
+﻿using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -11,6 +6,11 @@ using SchoolGallery.DAL;
 using SchoolGallery.Models;
 using SchoolGallery.Models.ViewModels;
 using SchoolGallery.Utils;
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace SchoolGallery.Controllers
 {
@@ -29,7 +29,7 @@ namespace SchoolGallery.Controllers
         // GET: Content
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Content.Where(z=>z.IsVideo==true).ToListAsync());
+            return View(await _context.Content.Where(z => z.IsVideo == true).ToListAsync());
         }
 
         // GET: Content/Details/5
@@ -77,12 +77,15 @@ namespace SchoolGallery.Controllers
             Category.AddRange(Tools.CreateTree(allCategory, -1, 0));
             ViewBag.Category = Category;
             ViewBag.isSuccess = null;
-            if (!(contentModel.Accessories == null || contentModel.Accessories.Length == 0))
+            if (contentModel.Accessories == null || contentModel.Accessories.Length == 0)
             {
-                if (!contentModel.Accessories.FileName.EndsWith(".flv"))
-                {
-                    ModelState.AddModelError("Accessories", "上传FLV格式文件");
-                }
+
+                ModelState.AddModelError("Accessories", "上传FLV格式文件");
+
+            }
+            if (!contentModel.Accessories.FileName.EndsWith(".flv"))
+            {
+                ModelState.AddModelError("Accessories", "上传FLV格式文件");
             }
             if (ModelState.IsValid)
             {
@@ -127,7 +130,7 @@ namespace SchoolGallery.Controllers
 
             var contentModel = await _context.Content.FindAsync(id);
 
-            var Category = new List<SelectListItem> { new SelectListItem() { Text = "主目录", Value = "-1" } };
+            var Category = new List<SelectListItem> ();
 
             var allCategory = _context.Category.ToList();
 
@@ -174,12 +177,15 @@ namespace SchoolGallery.Controllers
             {
                 return NotFound();
             }
-            if (!(contentModel.Accessories == null || contentModel.Accessories.Length == 0))
+            if (contentModel.Accessories == null || contentModel.Accessories.Length == 0)
             {
-                if (!contentModel.Accessories.FileName.EndsWith(".flv"))
-                {
-                    ModelState.AddModelError("Accessories", "上传FLV格式文件");
-                }
+
+                ModelState.AddModelError("Accessories", "上传FLV格式文件");
+
+            }
+            if (!contentModel.Accessories.FileName.EndsWith(".flv"))
+            {
+                ModelState.AddModelError("Accessories", "上传FLV格式文件");
             }
 
             if (ModelState.IsValid)
@@ -200,7 +206,7 @@ namespace SchoolGallery.Controllers
                     }
                     else
                     {
-                        string filePath = Path.Combine(_env.ContentRootPath, "Upload", "Files");
+                        string filePath = Path.Combine(_env.WebRootPath, "Upload", "Files");
                         string fileName = Guid.NewGuid().ToString();
                         using (var files = new FileStream(Path.Combine(filePath, fileName + ".flv"), FileMode.CreateNew))
                         {
