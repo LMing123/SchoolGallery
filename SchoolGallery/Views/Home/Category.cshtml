@@ -11,18 +11,27 @@
 
 <head>
     <meta charset="utf-8" />
-    <title></title>
+    <title>验收专题</title>
     <link rel="stylesheet" type="text/css" href="~/css/base.css" />
     <link rel="stylesheet" href="~/layui/css/layui.css">
     <link rel="stylesheet" type="text/css" href="~/css/school.css" />
 </head>
 
 <body>
-
-    <div class="banner"><img src="~/images/banner.jpg" /></div>
     <script src="https://cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>
     <script src="https://cdn.staticfile.org/respond.js/1.4.2/respond.min.js"></script>
-
+    <div class="hdd">
+        <div class="header">
+            <div class="lop" style="padding-top:15px;">
+                <img id="Image1" src="~/images/logo.png" style="margin-left: 10px" />
+            </div>
+            <div class="blank30">
+            </div>
+            <div class="tp">
+                <img id="Image2" src="~/images/banner.png" style="height:70px;width:711px;" />
+            </div>
+        </div>
+    </div>
     <header>
         <div class="header-wrap">
             <ul class="layui-nav layui-bg-cyan" lay-filter="">
@@ -44,43 +53,43 @@
 
     @functions
     {
-    public string Tree(List<SchoolGallery.Models.CategoryModel> items, int parentID, int depth)
-    {
-        StringBuilder sb = new StringBuilder();
-        List<CategoryModel> temItem = items.Where(z => z.ParentID == parentID).ToList();
-
-        if (temItem.Count > 0)
+        public string Tree(List<SchoolGallery.Models.CategoryModel> items, int parentID, int depth)
         {
+            StringBuilder sb = new StringBuilder();
+            List<CategoryModel> temItem = items.Where(z => z.ParentID == parentID).ToList();
 
-            for (int i = 0; i < temItem.Count; i++)
+            if (temItem.Count > 0)
             {
-                if (items.Where(z => z.ParentID == temItem[i].ID).Count() > 0)
+
+                for (int i = 0; i < temItem.Count; i++)
                 {
-                    sb.Append("<li class=\"layui-nav-item\">");
-                    sb.Append("<a href=\"javascript:; \">");
-                    sb.Append(temItem[i].Title);
-                    sb.Append("</a>");
-                    sb.Append("<dl class=\"layui-nav-child\">");
-                    sb.Append("<dd>");
-                    sb.Append(Tree(items, temItem[i].ID, depth + 1));
-                    sb.Append("</dd>");
-                    sb.Append("</dl>");
-                    sb.Append("</li>");
+                    if (items.Where(z => z.ParentID == temItem[i].ID).Count() > 0)
+                    {
+                        sb.Append("<li class=\"layui-nav-item\">");
+                        sb.Append("<a href=\"javascript:; \">");
+                        sb.Append(temItem[i].Title);
+                        sb.Append("</a>");
+                        sb.Append("<dl class=\"layui-nav-child\">");
+                        sb.Append("<dd>");
+                        sb.Append(Tree(items, temItem[i].ID, depth + 1));
+                        sb.Append("</dd>");
+                        sb.Append("</dl>");
+                        sb.Append("</li>");
+                    }
+                    else
+                    {
+                        sb.Append("<li class=\"layui-nav-item\">");
+                        sb.AppendFormat("<a href=\"/home/categoryinfo/{0} \" target=\"main\">{1}</a>", temItem[i].ID, temItem[i].Title);
+                        // sb.AppendFormat("<a href=\"{0} \" >{1}</a>", temItem[i].ID, temItem[i].Title);
+                        sb.Append("</li>");
+                    }
                 }
-                else
-                {
-                    sb.Append("<li class=\"layui-nav-item\">");
-                    sb.AppendFormat("<a href=\"/home/categoryinfo/{0} \" target=\"main\">{1}</a>", temItem[i].ID, temItem[i].Title);
-                    // sb.AppendFormat("<a href=\"{0} \" >{1}</a>", temItem[i].ID, temItem[i].Title);
-                    sb.Append("</li>");
-                }
+
             }
 
+            return sb.ToString();
+
         }
-
-        return sb.ToString();
-
-    }
     }
     <div class="container">
         <div class="nav-left">
@@ -96,17 +105,23 @@
                     <li>@Model.Title</li>
                 </ul>
             </div>
-            <a class="btn-login" href="/login/login">点击登陆</a>
-
             <div class="content">
-                <iframe id="main" name="main" src="/home/CategoryInfo/@Model.SelectID" frameborder="0" width="780px" height="800px"></iframe>
+                <iframe id="main" name="main" src="/home/CategoryInfo/@Model.SelectID" frameborder="0" width="780" height="800"></iframe>
             </div>
         </div>
     </div>
 
-
-
-    <footer></footer>
+    <div class="footer">
+        <p>
+            CopyRight © lnykzz.cn. All Right Reserved 营口市中等专业学校 版权所有
+        </p>
+        <p>
+            辽宁省营口市西市区渤海大街西30号　电话：0417-3308018
+        </p>
+        <p>
+            辽ICP备14001482号-1
+        </p>
+    </div>
 
     <script type="text/javascript" src="~/js/jquery-1.12.4.min.js"></script>
     <script src="~/layui/layui.js"></script>

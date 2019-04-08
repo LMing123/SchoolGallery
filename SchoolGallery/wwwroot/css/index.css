@@ -1,8 +1,66 @@
+body {
+    font-family: SimSun !important;
+    display: block;
+}
+div, p, img, dl, dt, dd, table {
+    margin: 0px;
+    padding: 0px;
+    border: 0px
+}
+.item-img-wrap img {
+    margin-top: 40px;
+}
+.footer {
+    background: #298dbf;
+    margin: 20px 0;
+    font-size: 12px;
+    height: 100px;
+    text-align: center;
+    padding: 40px 0px 0px;
+    color: #fff;
+    line-height: 25px;
+}
+
+.footer a {
+    color: #fff;
+    text-decoration: none
+}
+
+    .footer a:hover {
+        color: #fc0;
+        text-decoration: none
+    }
+
+.header {
+    background: url(../images/e13a.gif) no-repeat;
+    width: 1000px;
+    margin: 0px auto;
+    height: 185px;
+}
+
+.hdd {
+    background: url(../images/e13.gif) repeat-x;
+    height: 185px
+}
+.lop {
+    margin-left: 40px;
+}
+
+.tp {
+    margin-left: 300px
+}
+.blank30 {
+    clear: both;
+    font-size: 0px;
+    line-height: 0px;
+    width: auto;
+    height: 30px
+}
 .container{
 	overflow: hidden;
 	width: 1000px;
 	margin: 0 auto;
-	margin-top: 10px;
+	/*margin-top: 10px;*/
 }
 ul.container{
 	overflow: hidden;
@@ -17,11 +75,59 @@ ul.container{
 .item-img-wrap{
 	width: 100%;
 	height: 250px;
+    text-align:center;
 }
-.item-img-wrap img{
+.module-item .ic1 {
+    padding-top: 40px;
+    width: 100%;
+    height: 170px;
+    text-align: center;
+    background: #387855;
+}
+
+.module-item .ic2 {
+    padding-top: 40px;
+    width: 100%;
+    height: 170px;
+    text-align: center;
+    background: #96cea7;
+}
+
+.module-item .ic3 {
+    padding-top: 40px;
+    width: 100%;
+    height: 170px;
+    text-align: center;
+    background: #a1c966;
+}
+
+.module-item .ic4 {
+    padding-top: 40px;
+    width: 100%;
+    height: 170px;
+    text-align: center;
+    background: #afd89c;
+}
+
+.module-item .ic5 {
+    padding-top: 40px;
+    width: 100%;
+    height: 170px;
+    text-align: center;
+    background: #3b7751;
+}
+
+.module-item .ic6 {
+    padding-top: 40px;
+    width: 100%;
+    height: 170px;
+    text-align: center;
+    background: #4dac96;
+}
+/*.item-img-wrap img{
 	width: 100%;
 	height: 100%;
-}
+}*/
 .test{
 	color: #fff;
 	font-size: 16px;

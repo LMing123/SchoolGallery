@@ -25,7 +25,7 @@
     <div class="layui-form-item">
         <label asp-for="Title" class="layui-form-label"></label>
         <div class="layui-input-block">
-            <input asp-for="Title" class="layui-input" />
+            <input asp-for="Title" class="layui-input" value="@ViewBag.InputTitle" /> 
             <span asp-validation-for="Title" class="layui-bg-red"></span>
         </div>
     </div>
@@ -39,7 +39,7 @@
     <div class="layui-form-item">
         <label asp-for="Sort" class="layui-form-label"></label>
         <div class="layui-input-block">
-            <input asp-for="Sort" class="layui-input" />
+            <input asp-for="Sort" class="layui-input" value="@ViewBag.InputSort" />
             <span asp-validation-for="Sort" class="layui-bg-red"></span>
         </div>
     </div>

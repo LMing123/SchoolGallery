@@ -74,6 +74,15 @@ namespace SchoolGallery.Controllers
             var allCategory = _context.Category.ToList();
 
             Category.AddRange(Tools.CreateTree(allCategory, -1, 0));
+            // add
+            for (int i = 0; i < Category.Count; i++)
+            {
+                if (Category[i].Value == contentModel.CategoryID.ToString())
+                {
+                    Category[i].Selected = true;
+                }
+            }
+            //add
             ViewBag.Category = Category;
 
             ViewBag.isSuccess = null;
@@ -117,6 +126,10 @@ namespace SchoolGallery.Controllers
                 await _context.SaveChangesAsync();
 
                 ViewBag.isSuccess = true;
+                // add
+                ViewBag.InputTitle = "";
+                ViewBag.InputSort = contentModel.Sort + 1;
+                
                 return View(contentModel);
             }
             ViewBag.isSuccess = false;

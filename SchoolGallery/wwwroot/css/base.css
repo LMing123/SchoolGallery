@@ -14,7 +14,6 @@ a,input{outline: none}
 a { color:#666; text-decoration:none; outline:none;cursor: pointer;}
 ul, ol { list-style:none; }
 img{
-	width: 100%;
 	height: auto;
 	vertical-align: middle;
 }
@@ -35,13 +34,10 @@ body{
 	width: 100%;
 	height: 100%;
 }
-header{
-	width: 100%;
-	height: 60px;
-	background-color: #2F4056;
+header {
+    background-color: #298dbf;
 }
 .header-wrap{
 	width: 1000px;
-	height: 100%;
 	margin: 0 auto;
 }

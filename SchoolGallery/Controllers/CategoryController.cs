@@ -93,6 +93,15 @@ namespace SchoolGallery.Controllers
 
 
             Category.AddRange(Tools.CreateTree(allCategory, -1, 0));
+            //add
+            for (int i = 0; i < Category.Count; i++)
+            {
+                if (Category[i].Value == categoryModel.ParentID.ToString())
+                {
+                    Category[i].Selected = true;
+                }
+            }
+            //add
             ViewBag.CategoryType = Category;
             if (ModelState.IsValid)
             {
@@ -102,6 +111,9 @@ namespace SchoolGallery.Controllers
                 return  View() ;
             }
             ViewBag.isSuccess = false;
+            // add
+            ViewBag.InputTitle = "";
+
             return View(categoryModel);
         }
     

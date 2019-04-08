@@ -1,5 +1,4 @@
 body {
-    font-family: SimSun !important;
     display: block;
 }
 
@@ -67,12 +66,6 @@ div, p, img, dl, dt, dd, table {
 	float: left;
 	width: 200px;
 }
-
-/*侧栏字体设置为12px*/
-.nav-left .layui-nav * {
-    font-size: 12px;
-}
-
 .nav-left ul{
     float: left;
     width: 200px;
@@ -80,22 +73,9 @@ div, p, img, dl, dt, dd, table {
 .right-content{
 	position: relative ;
     margin-left:5px;
-	/*右侧主体内容有浮动*/
-	float: right;
+	float: left;
 	width: 78%;
 }
-
-.right-content .content embed{
-/*embed底部加阴影*/
-box-shadow: 0 1px 0px #eee;	
-
-}
-
-/*侧栏菜单缩进*/
-.layui-nav-child .layui-nav-child{text-indent:1em;}
-a[target="main"]{text-indent:2em;}
-
-
 .top-site{
 	width: 100%;
 	height: 40px;

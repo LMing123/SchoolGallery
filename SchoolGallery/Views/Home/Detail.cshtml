@@ -15,60 +15,67 @@
     }
 
 </head>
-<body>
+<body style="margin: 0;">
     <script src="https://cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>
     <script src="https://cdn.staticfile.org/respond.js/1.4.2/respond.min.js"></script>
-    <h2 style="align-items:center; align-content:center;text-align:center;">@Model.Title</h2>
+    <h2 style="align-items:center; align-content:center;text-align:center;margin:0; font-family:SimSun;">@Model.Title</h2>
     <hr />
 
     <div>
 
         @if (Model.IsVideo)
         {
-            <object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=6,0,29,0" width="750" height="400">
+            <object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=6,0,29,0" width="780" height="400">
                 <param name="movie" value="~/Upload/Videos/flvplayer.swf" />
                 <param name="quality" value="high" />
                 <param name="allowFullScreen" value="true" />
-                <embed src="~/Upload/Videos/flvplayer.swf" allowfullscreen="true" flashvars="vcastr_file=@Model.Accessories&IsAutoPlay=0&LogoUrl=images/logo.jpg" quality="high" pluginspage="http://www.macromedia.com/go/getflashplayer" type="application/x-shockwave-flash" width="750" height="400"></embed>
+                <embed src="~/Upload/Videos/flvplayer.swf" allowfullscreen="true" flashvars="vcastr_file=@Model.Accessories&IsAutoPlay=0&LogoUrl=images/logo.jpg" quality="high" pluginspage="http://www.macromedia.com/go/getflashplayer" type="application/x-shockwave-flash" width="780" height="400" style="box-shadow:0 1px #ccc"></embed>
             </object>
 
         }
         else
         {
-            <a id="viewerPlaceHolder" style="height:650px;display:block"></a>
+            <object classid="clsid:D27CDB6E-AE6D-11CF-96B8-444553540000" id="obj1" codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=6,0,40,0" border="0" width="780"  height="700"  >
+                <param name="movie" value="/Upload/Files/@Model.Accessories">
+                <param name="quality" value="High">
+                
+                <embed src="/Upload/Files/@Model.Accessories" pluginspage="http://www.macromedia.com/go/getflashplayer" type="application/x-shockwave-flash" name="obj1"  width="780" height="700"   quality="High" style="box-shadow:0 1px #ccc"></embed>
+                </object>
 
-            <script type="text/javascript">
-            var fp = new FlexPaperViewer(
-                '/flexPaper/FlexPaperViewer',
-                'viewerPlaceHolder', {
-                    config: {
-                        SwfFile: escape('/Upload/Files/@Model.Accessories'),
-                        Scale: 0.6,
-                        ZoomTransition: 'easeOut',
-                        ZoomTime: 0.5,
-                        ZoomInterval: 0.2,
-                        FitPageOnLoad: true,
-                        FitWidthOnLoad: false,
-                        FullScreenAsMaxWindow: false,
-                        ProgressiveLoading: false,
-                        MinZoomSize: 0.2,
-                        MaxZoomSize: 5,
-                        SearchMatchAll: false,
-                        InitViewMode: 'Portrait',
-                        PrintPaperAsBitmap: false,
+                @*<a id="viewerPlaceHolder" style="height:650px;display:block"></a>
 
-                        ViewModeToolsVisible: true,
-                        ZoomToolsVisible: true,
-                        NavToolsVisible: true,
-                        CursorToolsVisible: true,
-                        SearchToolsVisible: true,
+        <script type="text/javascript">
+        var fp = new FlexPaperViewer(
+            '/flexPaper/FlexPaperViewer',
+            'viewerPlaceHolder', {
+                config: {
+                    SwfFile: escape('/Upload/Files/@Model.Accessories'),
+                    Scale: 0.6,
+                    ZoomTransition: 'easeOut',
+                    ZoomTime: 0.5,
+                    ZoomInterval: 0.2,
+                    FitPageOnLoad: true,
+                    FitWidthOnLoad: false,
+                    FullScreenAsMaxWindow: false,
+                    ProgressiveLoading: false,
+                    MinZoomSize: 0.2,
+                    MaxZoomSize: 5,
+                    SearchMatchAll: false,
+                    InitViewMode: 'Portrait',
+                    PrintPaperAsBitmap: false,
 
-                        localeChain: 'en_US'
-                    }
-                });
-            </script>
-        }
+                    ViewModeToolsVisible: true,
+                    ZoomToolsVisible: true,
+                    NavToolsVisible: true,
+                    CursorToolsVisible: true,
+                    SearchToolsVisible: true,
 
-    </div>
+                    localeChain: 'en_US'
+                }
+            });
+        </script>*@
+            }
+
+</div>
 </body>
 </html>
