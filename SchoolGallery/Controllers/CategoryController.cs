@@ -8,6 +8,8 @@ using Microsoft.EntityFrameworkCore;
 using SchoolGallery.DAL;
 using SchoolGallery.Models;
 using SchoolGallery.Utils;
+using PagedList.Core.Mvc;
+using PagedList.Core;
 
 namespace SchoolGallery.Controllers
 {
@@ -21,13 +23,15 @@ namespace SchoolGallery.Controllers
         }
 
         // GET: Category
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(int? page)
         {
-
-            return View(BulidTree(_context.Category.ToList(),-1,0));
+            var pageNumber = page == null || page <= 0 ? 1 : page.Value;
+            var pageSize = 10;
+            var list = BulidTree(_context.Category.ToList(), -1, 0).AsQueryable();
+            return View(list.ToPagedList(pageNumber,pageSize));
         }
 
-        private List<CategoryModel> BulidTree(List<CategoryModel> items, int parentID,int depth)
+        private IEnumerable<CategoryModel> BulidTree(List<CategoryModel> items, int parentID,int depth)
         {
             var list = new List<CategoryModel>();
             var temItems = items.Where(z => z.ParentID == parentID).ToList();

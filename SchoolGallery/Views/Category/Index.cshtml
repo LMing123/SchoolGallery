@@ -1,4 +1,6 @@
-﻿@model IEnumerable<SchoolGallery.Models.CategoryModel>
+﻿@using PagedList.Core;
+@model IPagedList<SchoolGallery.Models.CategoryModel>
+
 
 @{
     Layout = "~/Views/Shared/_BSLayout.cshtml";
@@ -14,16 +16,16 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Title)
+               标题
             </th>
             @*<th>
                 @Html.DisplayNameFor(model => model.ParentID)
             </th>*@
             <th>
-                @Html.DisplayNameFor(model => model.NeedPassWord)
+                是否需要密码
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.PassWord)
+               密码
             </th>
             @*<th>
                 @Html.DisplayNameFor(model => model.Sort)
@@ -58,3 +60,4 @@
 }
     </tbody>
 </table>
+<pager list="Model" asp-action="Index" asp-controller="Category" param-page-number="page"></pager>
