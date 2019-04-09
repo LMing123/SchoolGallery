@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using SchoolGallery.DAL;
 using SchoolGallery.Models;
 using SchoolGallery.Models.ViewModels;
-
+using PagedList.Core;
 namespace SchoolGallery.Controllers
 {
     public class HomeController : Controller
@@ -31,10 +31,12 @@ namespace SchoolGallery.Controllers
             homeViewModel.ContentItems = _context.Content.Where(z=>z.CategoryID==id).ToList();
             return View(homeViewModel);
         }
-        public IActionResult CategoryInfo(int id)
+        public IActionResult CategoryInfo(int id,int? pageNum)
         {
-
-            return View(_context.Content.Where(z=>z.CategoryID==id).ToList());
+            ViewBag.ID = id;
+            int pageNumber = pageNum == null || pageNum <= 0 ? 1 : pageNum.Value;
+            var pageSize = 10;
+            return View( _context.Content.Where(z=>z.CategoryID==id).ToPagedList(pageNumber, pageSize));
         }
         public IActionResult Detail(int id)
         {

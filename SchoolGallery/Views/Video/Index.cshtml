@@ -1,10 +1,11 @@
-﻿@model IEnumerable<SchoolGallery.Models.ContentModel>
-
+﻿@using PagedList.Core;
+@using PagedList.Core.Mvc;
+@model IPagedList<SchoolGallery.Models.ContentModel>
 @{
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_BSLayout.cshtml";
 }
-
+<link rel="stylesheet" type="text/css" href="~/lib/bootstrap/dist/css/bootstrap.css" />
 <h2 class="site-h1">内容管理</h2>
 <hr>
 <p class="layui-btn layui-btn-primary">
@@ -14,16 +15,16 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Title)
+                @Html.DisplayNameFor(model => model.FirstOrDefault().Title)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Detail)
+                @Html.DisplayNameFor(model => model.FirstOrDefault().Detail)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.CategoryID)
+                @Html.DisplayNameFor(model => model.FirstOrDefault().CategoryID)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Accessories)
+                @Html.DisplayNameFor(model => model.FirstOrDefault().Accessories)
             </th>
             <th></th>
         </tr>
@@ -53,3 +54,4 @@
         }
     </tbody>
 </table>
+<pager list="Model" options="@PagedListRenderOptions.TwitterBootstrapPager" asp-action="Index" asp-controller="Video" param-page-number="pageNum" asp-route-id="@ViewBag.ID"></pager>

@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using PagedList.Core;
 using SchoolGallery.DAL;
 using SchoolGallery.Models;
 using SchoolGallery.Models.ViewModels;
@@ -27,9 +28,11 @@ namespace SchoolGallery.Controllers
         }
 
         // GET: Content
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(int? pageNum)
         {
-            return View(await _context.Content.Where(z => z.IsVideo == true).ToListAsync());
+            int pageNumber = pageNum == null || pageNum <= 0 ? 1 : pageNum.Value;
+            var pageSize = 10;
+            return View( _context.Content.Where(z => z.IsVideo == true).ToPagedList(pageNumber,pageSize));
         }
 
         // GET: Content/Details/5

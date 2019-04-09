@@ -3,7 +3,9 @@
     Layout = null;
 }
 @using SchoolGallery.Models;
-@model List<ContentModel>;
+@using PagedList.Core;
+@using PagedList.Core.Mvc;
+@model IPagedList<ContentModel>;
 
 <!DOCTYPE html>
 <html>
@@ -14,6 +16,7 @@
     <link rel="stylesheet" type="text/css" href="~/css/base.css" />
     <link rel="stylesheet" href="~/layui/css/layui.css">
     <link rel="stylesheet" type="text/css" href="~/css/list.css" />
+    <link rel="stylesheet" type="text/css" href="~/lib/bootstrap/dist/css/bootstrap.css" />
 </head>
 <body class="layui-layout-body">
     <script src="https://cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>
@@ -33,6 +36,7 @@
 
             </ul>
         </div>
+        <pager list="Model" options="@PagedListRenderOptions.TwitterBootstrapPager" asp-action="CategoryInfo" asp-controller="Home" param-page-number="pageNum" asp-route-id="@ViewBag.ID" ></pager>
     </div>
         <script src="~/lib/jquery/dist/jquery.js"></script>
         <script src="~/layui/layui.js"></script>

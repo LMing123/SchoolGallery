@@ -11,7 +11,7 @@ using SchoolGallery.DAL;
 using SchoolGallery.Models;
 using SchoolGallery.Models.ViewModels;
 using SchoolGallery.Utils;
-
+using PagedList.Core;
 namespace SchoolGallery.Controllers
 {
     public class ContentController : BaseController
@@ -27,9 +27,11 @@ namespace SchoolGallery.Controllers
         }
 
         // GET: Content
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(int? pageNum)
         {
-            return View(await _context.Content.Where(z=>z.IsVideo==false).ToListAsync());
+            int pageNumber = pageNum == null || pageNum <= 0 ? 1 : pageNum.Value;
+            var pageSize = 10;
+            return View( _context.Content.Where(z=>z.IsVideo==false).ToPagedList(pageNumber,pageSize));
         }
 
         // GET: Content/Details/5

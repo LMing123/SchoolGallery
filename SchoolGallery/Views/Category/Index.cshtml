@@ -1,4 +1,5 @@
 ﻿@using PagedList.Core;
+@using PagedList.Core.Mvc;
 @model IPagedList<SchoolGallery.Models.CategoryModel>
 
 
@@ -6,58 +7,59 @@
     Layout = "~/Views/Shared/_BSLayout.cshtml";
     ViewData["Title"] = "Index";
 }
-
+<link rel="stylesheet" type="text/css" href="~/lib/bootstrap/dist/css/bootstrap.css" />
 <h2 class="site-h1">分类管理</h2>
 <hr>
-<p 	class="layui-btn layui-btn-primary">
+<p class="layui-btn layui-btn-primary">
     <a asp-action="Create">新建分类</a>
 </p>
 <table class="layui-table">
     <thead>
         <tr>
             <th>
-               标题
+                标题
             </th>
             @*<th>
-                @Html.DisplayNameFor(model => model.ParentID)
-            </th>*@
+                    @Html.DisplayNameFor(model => model.ParentID)
+                </th>*@
             <th>
                 是否需要密码
             </th>
             <th>
-               密码
+                密码
             </th>
             @*<th>
-                @Html.DisplayNameFor(model => model.Sort)
-            </th>*@
+                    @Html.DisplayNameFor(model => model.Sort)
+                </th>*@
             <th></th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Title)
-            </td>
-            @*<td>
-                @Html.DisplayFor(modelItem => item.ParentID)
-            </td>*@
-            <td>
-                @Html.DisplayFor(modelItem => item.NeedPassWord)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.PassWord)
-            </td>
-            @*<td>
-                @Html.DisplayFor(modelItem => item.Sort)
-            </td>*@
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.ID">编辑</a> |
-               @* <a asp-action="Details" asp-route-id="@item.ID">Details</a> |*@
-                <a asp-action="Delete" asp-route-id="@item.ID">删除</a>
-            </td>
-        </tr>
-}
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Title)
+                </td>
+                @*<td>
+                        @Html.DisplayFor(modelItem => item.ParentID)
+                    </td>*@
+                <td>
+                    @Html.DisplayFor(modelItem => item.NeedPassWord)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PassWord)
+                </td>
+                @*<td>
+                        @Html.DisplayFor(modelItem => item.Sort)
+                    </td>*@
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.ID">编辑</a> |
+                    @* <a asp-action="Details" asp-route-id="@item.ID">Details</a> |*@
+                    <a asp-action="Delete" asp-route-id="@item.ID">删除</a>
+                </td>
+            </tr>
+        }
     </tbody>
 </table>
-<pager list="Model" asp-action="Index" asp-controller="Category" param-page-number="page"></pager>
+<pager list="Model" options="@PagedListRenderOptions.TwitterBootstrapPager" asp-action="Index" asp-controller="Category" param-page-number="page"></pager>
